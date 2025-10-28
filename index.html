@@ -126,52 +126,52 @@
 
   <main>
 
-    <!-- 1️⃣ Restaurant Cost Allocation -->
-    <section>
-      <h2>Restaurant Cost Allocation</h2>
-      <p class="caption">This visualisation breaks down how an average Australian restaurant allocates its expenses — offering insights into which operational factors impact profitability the most.</p>
-      <div id="vis1" class="vis"></div>
-      <p class="subcaption">Labour and ingredient costs dominate total expenditure, while rent and utilities remain major fixed expenses. Marketing and logistics contribute smaller yet strategic portions of the budget.</p>
-    </section>
-
-    <!-- 2️⃣ Supply Chain Map -->
-    <section>
-      <h2>Australia’s Food Supply Chain</h2>
-      <p class="caption">Mapping the origins of catering ingredients across Australia and abroad — revealing the country’s dependence on both local producers and international trade routes.</p>
-      <div id="vis2" class="vis"></div>
-      <p class="subcaption">Local sourcing dominates fresh produce and dairy, whereas imported ingredients like spices and seafood are primarily routed from Asia and Europe, highlighting the industry’s global interconnection.</p>
-    </section>
-
-    <!-- 3️⃣ Restaurants by City -->
+    <!-- 1️⃣ Restaurant by City -->
     <section>
       <h2>Restaurant Density by City</h2>
       <p class="caption">A comparison of restaurant concentration across Australian cities — showing where the country’s culinary diversity and business opportunities thrive.</p>
-      <div id="vis3" class="vis"></div>
+      <div id="vis1" class="vis"></div>
       <p class="subcaption">Sydney and Melbourne lead with the highest restaurant counts per capita, while Brisbane and Perth display strong growth trends linked to population expansion and tourism recovery.</p>
     </section>
 
-    <!-- 4️⃣ Cuisine Revenue -->
+    <!-- 2️⃣ Cuisine Revenue -->
     <section>
       <h2>Cuisine Revenue Trends (2000–2025)</h2>
       <p class="caption">Longitudinal revenue data revealing how Australians’ culinary preferences have evolved — from traditional European cuisines to Asian fusion and plant-based trends.</p>
-      <div id="vis4" class="vis"></div>
+      <div id="vis2" class="vis"></div>
       <p class="subcaption">Fusion cuisines have seen exponential growth since 2015, while conventional Western categories plateaued. The pandemic temporarily reduced revenue but sparked innovation in takeaway models.</p>
     </section>
 
-    <!-- 5️⃣ Catering Market Size -->
-    <section>
-      <h2>National Catering Market Size Growth</h2>
-      <p class="caption">Illustrates the total market value of Australia’s catering sector over time, capturing shifts in consumer demand, event culture, and service innovation.</p>
-      <div id="vis5" class="vis"></div>
-      <p class="subcaption">A steady upward trajectory reflects resilience despite global disruptions — with major rebounds following COVID-19 lockdowns and continued growth projected through 2025.</p>
-    </section>
-
-    <!-- 6️⃣ Catering Revenue Overview -->
+    <!-- 3️⃣ Australia Catering Revenue -->
     <section>
       <h2>Overall Catering Revenue Outlook</h2>
       <p class="caption">This visual aggregates national catering revenue performance to highlight macro-economic health, recovery patterns, and long-term business sustainability.</p>
-      <div id="vis6" class="vis"></div>
+      <div id="vis3" class="vis"></div>
       <p class="subcaption">Seasonal spikes align with holiday and event seasons. Revenue stabilisation post-2022 indicates renewed consumer confidence and operational scalability across small to medium enterprises.</p>
+    </section>
+
+    <!-- 4️⃣ Catering Market Size -->
+    <section>
+      <h2>National Catering Market Size Growth</h2>
+      <p class="caption">Illustrates the total market value of Australia’s catering sector over time, capturing shifts in consumer demand, event culture, and service innovation.</p>
+      <div id="vis4" class="vis"></div>
+      <p class="subcaption">A steady upward trajectory reflects resilience despite global disruptions — with major rebounds following COVID-19 lockdowns and continued growth projected through 2025.</p>
+    </section>
+
+    <!-- 5️⃣ Restaurant Cost Allocation -->
+    <section>
+      <h2>Restaurant Cost Allocation</h2>
+      <p class="caption">This visualisation breaks down how an average Australian restaurant allocates its expenses — offering insights into which operational factors impact profitability the most.</p>
+      <div id="vis5" class="vis"></div>
+      <p class="subcaption">Labour and ingredient costs dominate total expenditure, while rent and utilities remain major fixed expenses. Marketing and logistics contribute smaller yet strategic portions of the budget.</p>
+    </section>
+
+    <!-- 6️⃣ Supply Chain Map -->
+    <section>
+      <h2>Australia’s Food Supply Chain</h2>
+      <p class="caption">Mapping the origins of catering ingredients across Australia and abroad — revealing the country’s dependence on both local producers and international trade routes.</p>
+      <div id="vis6" class="vis"></div>
+      <p class="subcaption">Local sourcing dominates fresh produce and dairy, whereas imported ingredients like spices and seafood are primarily routed from Asia and Europe, highlighting the industry’s global interconnection.</p>
     </section>
 
   </main>
@@ -182,12 +182,12 @@
 
   <!-- Vega-Lite embeds -->
   <script>
-    vegaEmbed('#vis1', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Restaurant%20cost%20allocation.json");
-    vegaEmbed('#vis2', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20supply%20chain.json");
-    vegaEmbed('#vis3', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20restaurant%20by%20city.json");
-    vegaEmbed('#vis4', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20cuisine%20revenue.json");
-    vegaEmbed('#vis5', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20catering%20market%20size.json");
-    vegaEmbed('#vis6', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Asutralia%20catering%20revenue.json");
+    vegaEmbed('#vis1', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20restaurant%20by%20city.json");
+    vegaEmbed('#vis2', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20cuisine%20revenue.json");
+    vegaEmbed('#vis3', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Asutralia%20catering%20revenue.json");
+    vegaEmbed('#vis4', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20catering%20market%20size.json");
+    vegaEmbed('#vis5', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Restaurant%20cost%20allocation.json");
+    vegaEmbed('#vis6', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20supply%20chain.json");
   </script>
 </body>
 </html>

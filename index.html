@@ -1,193 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Australian Catering Industry Visualisation Dashboard</title>
-
-  <!-- Vega Libraries -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Australian Catering Industry Visualisation</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
+  
   <style>
-  /* ====== Global Layout ====== */
-  body {
-    font-family: "Poppins", "Segoe UI", sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(180deg, #e8f5ff 0%, #d7ecff 25%, #c7e4ff 50%, #b6dbff 75%, #a6d2ff 100%);
-    color: #1f2d3d;
-    line-height: 1.6;
-  }
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: linear-gradient(#cde6ff, #f8fcff);
+      margin: 0;
+      padding: 2rem;
+      color: #222;
+    }
 
-  /* ====== Header ====== */
-  header {
-    text-align: center;
-    background: white;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-    padding: 70px 20px 50px;
-    border-bottom: 6px solid #0077b6;
-  }
+    .chart-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 1100px;
+    }
 
-  header h1 {
-    font-size: 3em;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #004d7a;
-    margin-bottom: 10px;
-  }
+    .chart-card h2 {
+      margin-top: 0;
+      color: #004e92;
+      font-size: 1.8rem;
+      border-left: 6px solid #00bcd4;
+      padding-left: 0.6rem;
+    }
 
-  header p {
-    font-size: 1.1em;
-    color: #555;
-    max-width: 700px;
-    margin: auto;
-  }
+    .chart-desc {
+      font-style: italic;
+      color: #444;
+      margin-bottom: 1rem;
+      background: #f3f9fc;
+      padding: 0.8rem;
+      border-radius: 8px;
+    }
 
-  /* ====== Section Containers ====== */
-  main {
-    width: 85%;
-    max-width: 1200px;
-    margin: 50px auto 100px auto;
-  }
+    .viz-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  section {
-    background: rgba(255, 255, 255, 0.96);
-    margin: 60px 0;
-    padding: 40px;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    border-top: 6px solid #0077b6;
-    transition: transform 0.25s ease;
-  }
+    .viz {
+      flex: 1 1 600px;
+      min-width: 480px;
+      max-width: 650px;
+      height: 420px;
+    }
 
-  section:hover {
-    transform: translateY(-4px);
-  }
+    .caption-box {
+      flex: 1 1 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
 
-  /* ====== Section Titles ====== */
-  section h2 {
-    font-size: 1.8em;
-    color: #004d7a;
-    font-weight: 600;
-    border-left: 6px solid #0077b6;
-    padding-left: 12px;
-    margin-bottom: 15px;
-  }
+    .caption-main {
+      color: #333;
+      font-weight: 600;
+      border-left: 4px solid #00bcd4;
+      padding-left: 0.6rem;
+    }
 
-  /* ====== Captions & Subcaptions ====== */
-  .caption {
-    font-style: italic;
-    color: #333;
-    background: #f4faff;
-    border-left: 4px solid #0096c7;
-    padding: 12px 18px;
-    border-radius: 6px;
-    margin-bottom: 25px;
-    font-size: 0.95em;
-    line-height: 1.5;
-  }
+    .caption-secondary {
+      color: #666;
+      font-size: 0.95rem;
+    }
 
-  .subcaption {
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 15px;
-    padding-left: 10px;
-    border-left: 3px solid #a8dadc;
-    line-height: 1.5;
-  }
-
-  /* ====== Graph Container ====== */
-  .vis {
-    width: 100%;
-    height: 550px;
-    border-radius: 10px;
-    border: 1px solid #e0e0e0;
-    background: #fff;
-  }
-
-  /* ====== Footer ====== */
-  footer {
-    text-align: center;
-    padding: 30px;
-    background: #003049;
-    color: white;
-    font-size: 0.95em;
-    letter-spacing: 0.3px;
-  }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #555;
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Australian Catering Industry Insights Dashboard</h1>
-    <p>A comprehensive view of Australia’s restaurant and catering ecosystem — from city distribution and cuisine growth to cost structure and supply networks.</p>
-  </header>
+  <h1 style="text-align:center; color:#003f6f;">Australian Catering Industry Dashboard</h1>
+  <p style="text-align:center; max-width:850px; margin:auto; color:#444;">
+    This dashboard visualises the evolving landscape of Australia’s food and catering industry — 
+    from restaurant distribution and cuisine trends to cost breakdowns and supply chains.
+  </p>
 
-  <main>
+  <script type="text/javascript">
+    const charts = [
+      {
+        title: "Restaurant Distribution by City",
+        desc: "Shows restaurant concentration across Australian cities to highlight regional dining activity.",
+        spec: "https://mcha0181.github.io/Data-Visualisation-2-submission/Australia%20restaurant%20by%20city.json",
+        main: "Sydney and Melbourne dominate due to dense populations and tourism.",
+        secondary: "Smaller clusters in Perth and Brisbane suggest growing suburban hospitality hubs.",
+        sideBySide: true
+      },
+      {
+        title: "Cuisine Revenue Trends (2000–2025)",
+        desc: "Reveals how Australians’ culinary preferences evolved — from Western to Asian and plant-based cuisine.",
+        spec: "https://mcha0181.github.io/Data-Visualisation-2-submission/Australia%20cuisine%20revenue.json",
+        main: "Asian cuisines exhibit sharp growth, overtaking traditional European styles.",
+        secondary: "Pandemic dips in 2020–2021 were followed by rapid consumer rebound.",
+        sideBySide: false
+      },
+      {
+        title: "Overall Catering Revenue Outlook",
+        desc: "Aggregates national catering revenue to show post-pandemic recovery and business resilience.",
+        spec: "https://mcha0181.github.io/Data-Visualisation-2-submission/Asutralia%20catering%20revenue.json",
+        main: "2023 revenue exceeded pre-pandemic levels, signaling renewed market optimism.",
+        secondary: "Corporate catering demand remains volatile, but event services are stabilizing.",
+        sideBySide: false
+      },
+      {
+        title: "Catering Market Size Over Time",
+        desc: "Tracks long-term market expansion and contraction across service categories.",
+        spec: "https://mcha0181.github.io/Data-Visualisation-2-submission/Australia%20catering%20market%20size.json",
+        main: "Gradual recovery toward 2025 with moderate growth expected in casual dining.",
+        secondary: "Increased supply chain efficiency contributed to cost stability.",
+        sideBySide: true
+      },
+      {
+        title: "Restaurant Cost Allocation Breakdown",
+        desc: "Breaks down expenditure into labour, rent, and raw materials for insight into cost pressure points.",
+        spec: "https://mcha0181.github.io/Data-Visualisation-2-submission/Restaurant%20cost%20allocation.json",
+        main: "Labour costs remain the largest expense category across all segments.",
+        secondary: "High utility and logistics costs continue to challenge profit margins.",
+        sideBySide: false
+      },
+      {
+        title: "Supply Chain Origins of Catering Ingredients",
+        desc: "Maps domestic versus imported sourcing to show Australia’s food supply reliance.",
+        spec: "https://mcha0181.github.io/Data-Visualisation-2-submission/Australia%20supply%20chain.json",
+        main: "Local sourcing dominates fresh produce, while imports cover specialty goods.",
+        secondary: "Diversification post-COVID improved resilience against global disruptions.",
+        sideBySide: true
+      }
+    ];
 
-    <!-- 1️⃣ Restaurant Cost Allocation -->
-    <section>
-      <h2>Restaurant Cost Allocation</h2>
-      <p class="caption">This visualisation breaks down how an average Australian restaurant allocates its expenses — offering insights into which operational factors impact profitability the most.</p>
-      <div id="vis1" class="vis"></div>
-      <p class="subcaption">Labour and ingredient costs dominate total expenditure, while rent and utilities remain major fixed expenses. Marketing and logistics contribute smaller yet strategic portions of the budget.</p>
-    </section>
+    charts.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.classList.add('chart-card');
 
-    <!-- 2️⃣ Supply Chain Map -->
-    <section>
-      <h2>Australia’s Food Supply Chain</h2>
-      <p class="caption">Mapping the origins of catering ingredients across Australia and abroad — revealing the country’s dependence on both local producers and international trade routes.</p>
-      <div id="vis2" class="vis"></div>
-      <p class="subcaption">Local sourcing dominates fresh produce and dairy, whereas imported ingredients like spices and seafood are primarily routed from Asia and Europe, highlighting the industry’s global interconnection.</p>
-    </section>
+      const title = document.createElement('h2');
+      title.textContent = c.title;
 
-    <!-- 3️⃣ Restaurants by City -->
-    <section>
-      <h2>Restaurant Density by City</h2>
-      <p class="caption">A comparison of restaurant concentration across Australian cities — showing where the country’s culinary diversity and business opportunities thrive.</p>
-      <div id="vis3" class="vis"></div>
-      <p class="subcaption">Sydney and Melbourne lead with the highest restaurant counts per capita, while Brisbane and Perth display strong growth trends linked to population expansion and tourism recovery.</p>
-    </section>
+      const desc = document.createElement('p');
+      desc.classList.add('chart-desc');
+      desc.textContent = c.desc;
 
-    <!-- 4️⃣ Cuisine Revenue -->
-    <section>
-      <h2>Cuisine Revenue Trends (2000–2025)</h2>
-      <p class="caption">Longitudinal revenue data revealing how Australians’ culinary preferences have evolved — from traditional European cuisines to Asian fusion and plant-based trends.</p>
-      <div id="vis4" class="vis"></div>
-      <p class="subcaption">Fusion cuisines have seen exponential growth since 2015, while conventional Western categories plateaued. The pandemic temporarily reduced revenue but sparked innovation in takeaway models.</p>
-    </section>
+      const vizRow = document.createElement('div');
+      vizRow.classList.add('viz-row');
 
-    <!-- 5️⃣ Catering Market Size -->
-    <section>
-      <h2>National Catering Market Size Growth</h2>
-      <p class="caption">Illustrates the total market value of Australia’s catering sector over time, capturing shifts in consumer demand, event culture, and service innovation.</p>
-      <div id="vis5" class="vis"></div>
-      <p class="subcaption">A steady upward trajectory reflects resilience despite global disruptions — with major rebounds following COVID-19 lockdowns and continued growth projected through 2025.</p>
-    </section>
+      const vizDiv = document.createElement('div');
+      vizDiv.classList.add('viz');
+      vizDiv.id = `chart${i}`;
 
-    <!-- 6️⃣ Catering Revenue Overview -->
-    <section>
-      <h2>Overall Catering Revenue Outlook</h2>
-      <p class="caption">This visual aggregates national catering revenue performance to highlight macro-economic health, recovery patterns, and long-term business sustainability.</p>
-      <div id="vis6" class="vis"></div>
-      <p class="subcaption">Seasonal spikes align with holiday and event seasons. Revenue stabilisation post-2022 indicates renewed consumer confidence and operational scalability across small to medium enterprises.</p>
-    </section>
+      const captionBox = document.createElement('div');
+      captionBox.classList.add('caption-box');
 
-  </main>
+      const main = document.createElement('p');
+      main.classList.add('caption-main');
+      main.textContent = c.main;
+
+      const secondary = document.createElement('p');
+      secondary.classList.add('caption-secondary');
+      secondary.textContent = c.secondary;
+
+      captionBox.append(main, secondary);
+
+      if (c.sideBySide) {
+        vizRow.append(vizDiv, captionBox);
+      } else {
+        vizRow.append(vizDiv);
+        card.append(title, desc, vizRow, captionBox);
+      }
+
+      card.append(title, desc, vizRow, !c.sideBySide ? captionBox : null);
+      document.body.appendChild(card);
+
+      vegaEmbed(`#chart${i}`, c.spec, { actions: false, width: "auto", height: 400 });
+    });
+  </script>
 
   <footer>
-    <p>© 2025 Australian Catering Industry Dashboard | Designed for Data Visualisation 2 Submission | Built with Vega-Lite & GitHub Pages</p>
+    © 2025 Australian Catering Industry Data Visualisation
   </footer>
-
-  <!-- Vega-Lite embeds -->
-  <script>
-    vegaEmbed('#vis1', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Restaurant%20cost%20allocation.json");
-    vegaEmbed('#vis2', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20supply%20chain.json");
-    vegaEmbed('#vis3', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20restaurant%20by%20city.json");
-    vegaEmbed('#vis4', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20cuisine%20revenue.json");
-    vegaEmbed('#vis5', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20catering%20market%20size.json");
-    vegaEmbed('#vis6', "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Asutralia%20catering%20revenue.json");
-  </script>
 </body>
 </html>

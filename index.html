@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  
+
   <style>
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
@@ -53,9 +53,9 @@
 
     .viz {
       flex: 1 1 600px;
-      min-width: 480px;
-      max-width: 650px;
-      height: 420px;
+      min-width: 500px;
+      max-width: 680px;
+      height: 430px;
     }
 
     .caption-box {
@@ -73,7 +73,7 @@
     }
 
     .caption-secondary {
-      color: #666;
+      color: #555;
       font-size: 0.95rem;
     }
 
@@ -89,57 +89,57 @@
   <h1 style="text-align:center; color:#003f6f;">Australian Catering Industry Dashboard</h1>
   <p style="text-align:center; max-width:850px; margin:auto; color:#444;">
     This dashboard visualises the evolving landscape of Australia’s food and catering industry — 
-    from restaurant distribution and cuisine trends to cost breakdowns and supply chains.
+    from restaurant distribution and cuisine trends to market recovery, cost structures, and supply chains.
   </p>
 
   <script type="text/javascript">
     const charts = [
       {
         title: "Restaurant Distribution by City",
-        desc: "Shows restaurant concentration across Australian cities to highlight regional dining activity.",
-        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20restaurant%20by%20city.json",
-        main: "Sydney and Melbourne dominate due to dense populations and tourism.",
-        secondary: "Smaller clusters in Perth and Brisbane suggest growing suburban hospitality hubs.",
+        desc: "Visualises restaurant density across major Australian cities to reveal regional growth and tourism effects.",
+        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/main/Australia%20restaurant%20by%20city.json",
+        main: "Sydney and Melbourne dominate due to high urban density and international tourism traffic.",
+        secondary: "Secondary cities such as Perth and Brisbane show emerging culinary clusters linked to population expansion and suburban hospitality development.",
         sideBySide: true
       },
       {
         title: "Cuisine Revenue Trends (2000–2025)",
-        desc: "Reveals how Australians’ culinary preferences evolved — from Western to Asian and plant-based cuisine.",
-        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20cuisine%20revenue.json",
-        main: "Asian cuisines exhibit sharp growth, overtaking traditional European styles.",
-        secondary: "Pandemic dips in 2020–2021 were followed by rapid consumer rebound.",
+        desc: "Shows how Australians’ dining preferences have shifted from Western to Asian and plant-based cuisines.",
+        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/main/Australia%20cuisine%20revenue.json",
+        main: "Asian cuisines, particularly Chinese and Thai, show steep long-term revenue growth surpassing Italian and European styles.",
+        secondary: "Post-pandemic rebound reflects stronger consumer loyalty to diverse and comfort-oriented food experiences.",
         sideBySide: false
       },
       {
         title: "Overall Catering Revenue Outlook",
-        desc: "Aggregates national catering revenue to show post-pandemic recovery and business resilience.",
-        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Asutralia%20catering%20revenue.json",
-        main: "2023 revenue exceeded pre-pandemic levels, signaling renewed market optimism.",
-        secondary: "Corporate catering demand remains volatile, but event services are stabilizing.",
+        desc: "Aggregates national catering revenue performance to illustrate post-pandemic recovery and business stability.",
+        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/main/Asutralia%20catering%20revenue.json",
+        main: "National catering revenue in 2023 exceeded pre-pandemic levels, signalling a confident return of corporate and private events.",
+        secondary: "Short-term volatility remains tied to economic inflation and workforce availability, but the long-term outlook is positive.",
         sideBySide: false
       },
       {
         title: "Catering Market Size Over Time",
-        desc: "Tracks long-term market expansion and contraction across service categories.",
-        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20catering%20market%20size.json",
-        main: "Gradual recovery toward 2025 with moderate growth expected in casual dining.",
-        secondary: "Increased supply chain efficiency contributed to cost stability.",
+        desc: "Tracks changes in the overall catering market value, reflecting economic cycles and industry adaptation.",
+        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/main/Australia%20catering%20market%20size.json",
+        main: "The market recovered steadily after 2021 as consumer gatherings resumed and event catering rebounded.",
+        secondary: "Stabilisation is linked to hybrid service models combining delivery and on-site experiences.",
         sideBySide: true
       },
       {
         title: "Restaurant Cost Allocation Breakdown",
-        desc: "Breaks down expenditure into labour, rent, and raw materials for insight into cost pressure points.",
-        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Restaurant%20cost%20allocation.json",
-        main: "Labour costs remain the largest expense category across all segments.",
-        secondary: "High utility and logistics costs continue to challenge profit margins.",
+        desc: "Analyses expenditure structure — labour, ingredients, rent, logistics — to show where business pressures concentrate.",
+        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/main/Restaurant%20cost%20allocation.json",
+        main: "Labour remains the largest operational cost, comprising up to half of total expenses.",
+        secondary: "Ingredient costs fluctuate seasonally, while rent and logistics contribute steadily to overhead pressure.",
         sideBySide: false
       },
       {
         title: "Supply Chain Origins of Catering Ingredients",
-        desc: "Maps domestic versus imported sourcing to show Australia’s food supply reliance.",
-        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20supply%20chain.json",
-        main: "Local sourcing dominates fresh produce, while imports cover specialty goods.",
-        secondary: "Diversification post-COVID improved resilience against global disruptions.",
+        desc: "Maps local vs. imported ingredient sourcing to highlight Australia’s balance between self-reliance and trade dependence.",
+        spec: "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/main/Australia%20supply%20chain.json",
+        main: "Fresh produce remains predominantly locally sourced, ensuring quality and sustainability alignment.",
+        secondary: "Imported goods still account for specialised or high-volume commodities such as oils and grains, emphasising diversification benefits post-COVID.",
         sideBySide: true
       }
     ];
@@ -185,7 +185,7 @@
       card.append(title, desc, vizRow, !c.sideBySide ? captionBox : null);
       document.body.appendChild(card);
 
-      vegaEmbed(`#chart${i}`, c.spec, { actions: false, width: "auto", height: 400 });
+      vegaEmbed(`#chart${i}`, c.spec, { actions: false, width: "auto", height: 420 });
     });
   </script>
 

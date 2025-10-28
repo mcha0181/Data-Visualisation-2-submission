@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Visualisation Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background: #004d7a;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    main {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+    section {
+      margin-bottom: 50px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    section h2 {
+      margin-top: 0;
+    }
+    .vis {
+      width: 100%;
+      min-height: 600px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #002e4a;
+      color: white;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+<header>
+  <h1>Australian Catering & Restaurant Industry Visualisations</h1>
+  <p>Data dashboards powered by Vega-Lite</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>1. Restaurant Cost Allocation</h2>
+    <div id="vis1" class="vis"></div>
+    <script>
+      vegaEmbed('#vis1', {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Restaurant%20cost%20allocation.json"
+        },
+        "mark": "bar",  /* adjust mark and other spec details as needed */
+        "encoding": {
+          "x": { "field": "CostCategory", "type": "nominal", "title": "Cost Category" },
+          "y": { "field": "Amount", "type": "quantitative", "title": "Amount (AUD)" }
+        },
+        "title": "Restaurant Cost Allocation"
+      }).then(function (result) {
+        // Access the Vega view instance as result.view
+      }).catch(console.error);
+    </script>
+  </section>
+
+  <section>
+    <h2>2. Australia Supply Chain Map / Flow</h2>
+    <div id="vis2" class="vis"></div>
+    <script>
+      vegaEmbed('#vis2', {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20supply%20chain.json"
+        },
+        /* Example spec: you’ll need to adjust for map/flow chart */
+        "mark": "geoshape",
+        "projection": { "type": "mercator" },
+        "encoding": {
+          "tooltip": [
+            { "field": "Location", "type": "nominal" },
+            { "field": "Volume", "type": "quantitative" }
+          ]
+        },
+        "title": "Australia Supply Chain"
+      }).then(...).catch(console.error);
+    </script>
+  </section>
+
+  <section>
+    <h2>3. Restaurants by City (Australia)</h2>
+    <div id="vis3" class="vis"></div>
+    <script>
+      vegaEmbed('#vis3', {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20restaurant%20by%20city.json"
+        },
+        "mark": "circle",
+        "encoding": {
+          "x": { "field": "City", "type": "nominal", "title": "City" },
+          "y": { "field": "RestaurantCount", "type": "quantitative", "title": "Number of Restaurants" },
+          "size": { "field": "RestaurantCount", "type": "quantitative" }
+        },
+        "title": "Restaurants by City"
+      }).then(...).catch(console.error);
+    </script>
+  </section>
+
+  <section>
+    <h2>4. Cuisine Revenue (2000-2025)</h2>
+    <div id="vis4" class="vis"></div>
+    <script>
+      vegaEmbed('#vis4', {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20cuisine%20revenue.json"
+        },
+        "mark": "line",
+        "encoding": {
+          "x": { "field": "Year", "type": "temporal", "title": "Year" },
+          "y": { "field": "Revenue", "type": "quantitative", "title": "Revenue (AUD)" },
+          "color": { "field": "CuisineType", "type": "nominal", "title": "Cuisine Type" }
+        },
+        "title": "Cuisine Revenue Over Time"
+      }).then(...).catch(console.error);
+    </script>
+  </section>
+
+  <section>
+    <h2>5. Australia Catering Market Size</h2>
+    <div id="vis5" class="vis"></div>
+    <script>
+      vegaEmbed('#vis5', {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Australia%20catering%20market%20size.json"
+        },
+        "mark": "area",
+        "encoding": {
+          "x": { "field": "Year", "type": "temporal" },
+          "y": { "field": "MarketSize", "type": "quantitative", "title": "Market Size (AUD)" }
+        },
+        "title": "Catering Market Size Over Time"
+      }).then(...).catch(console.error);
+    </script>
+  </section>
+
+  <section>
+    <h2>6. Australia Catering Revenue</h2>
+    <div id="vis6" class="vis"></div>
+    <script>
+      vegaEmbed('#vis6', {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "url": "https://raw.githubusercontent.com/mcha0181/Data-Visualisation-2-submission/refs/heads/main/Asutralia%20catering%20revenue.json"
+        },
+        "mark": "bar",
+        "encoding": {
+          "x": { "field": "Year", "type": "temporal" },
+          "y": { "field": "Revenue", "type": "quantitative", "title": "Revenue (AUD)" }
+        },
+        "title": "Catering Revenue Over Time"
+      }).then(...).catch(console.error);
+    </script>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 Dashboard — Built with Vega-Lite & GitHub Pages</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Australian Catering Supply Chain (Local vs Imported Ingredients)",
+  "width": 900,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/mcha0181/data-visualisation-2/refs/heads/main/aus_supply_chain_100_fixed.csv",
+    "format": {"type": "csv"}
+  },
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega/main/docs/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "mark": {"type": "geoshape", "fill": "#e5e5e5", "stroke": "white"}
+    },
+    {
+      "mark": {"type": "circle", "tooltip": true},
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "color": {
+          "field": "Local_vs_Imported",
+          "type": "nominal",
+          "scale": {"domain": ["Local", "Imported"], "range": ["#1f77b4", "#ff7f0e"]},
+          "title": "Source Type"
+        },
+        "size": {"value": 70},
+        "tooltip": [
+          {"field": "Supplier", "type": "nominal"},
+          {"field": "Ingredient", "type": "nominal"},
+          {"field": "Origin_Country", "type": "nominal"},
+          {"field": "Local_vs_Imported", "type": "nominal"}
+        ]
+      }
+    }
+  ]
+}

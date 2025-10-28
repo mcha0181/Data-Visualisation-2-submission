@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Australia Catering Market Size (2000–2030, COVID-19 Impact)",
+  "width": 720,
+  "height": 360,
+  "data": {
+    "url": "https://raw.githubusercontent.com/mcha0181/data-visualisation-2/refs/heads/main/au_catering_market_size_2000_2030_estimated_covid.csv",
+    "format": {"type": "csv"}
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "point": true, "strokeWidth": 2},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "axis": {"title": "Year", "format": "d"}
+        },
+        "y": {
+          "field": "market_turnover_aud_b",
+          "type": "quantitative",
+          "title": "Market Turnover (Billion AUD)"
+        },
+        "color": {
+          "field": "type",
+          "type": "nominal",
+          "title": "Data Type",
+          "scale": {
+            "domain": ["actual", "projected"],
+            "range": ["#1f77b4", "#ff7f0e"]
+          }
+        },
+        "tooltip": [
+          {"field": "year", "type": "quantitative", "title": "Year"},
+          {"field": "market_turnover_aud_b", "type": "quantitative", "title": "Turnover (B AUD)", "format": ".2f"},
+          {"field": "type", "type": "nominal", "title": "Type"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "red",
+        "strokeDash": [6, 3]
+      },
+      "encoding": {
+        "x": {"datum": 2020}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "text": "COVID-19 Impact",
+        "dx": 10,
+        "dy": -150,
+        "color": "red",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {"datum": 2020},
+        "y": {"datum": 21.5}
+      }
+    }
+  ],
+  "config": {
+    "background": "#f9fbff",
+    "axis": {"labelFontSize": 10, "titleFontSize": 12},
+    "legend": {"titleFontSize": 12, "labelFontSize": 10}
+  }
+}

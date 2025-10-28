@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/mcha0181/data-visualisation-2/refs/heads/main/au_catering_revenue_2024_estimates_cleaned.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": {"type": "arc", "innerRadius": 60, "outerRadius": 120},
+  "encoding": {
+    "theta": {"field": "Revenue", "type": "quantitative", "title": "Revenue (M AUD)"},
+    "color": {"field": "Cuisine", "type": "nominal", "title": "Sector"},
+    "tooltip": [
+      {"field": "Cuisine", "type": "nominal", "title": "Sector"},
+      {"field": "Revenue", "type": "quantitative", "title": "Revenue (M AUD)", "format": ",.2f"}
+    ]
+  },
+  "view": {"stroke": null},
+  "config": {
+    "background": "#f9fbff",
+    "legend": {"orient": "right", "titleFontSize": 12, "labelFontSize": 10},
+    "arc": {"stroke": "#fff", "strokeWidth": 1}
+  },
+  "title": {
+    "text": "2024 Australian Catering Revenue by Sector",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "middle"
+  }
+}

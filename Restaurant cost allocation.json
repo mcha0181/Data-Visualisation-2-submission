@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Restaurant Cost Allocation Breakdown",
+    "anchor": "middle",
+    "fontSize": 18,
+    "fontWeight": "bold"
+  },
+  "width": 700,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/mcha0181/data-visualisation-2/refs/heads/main/restaurant_cost_allocation_tidy.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 5,
+    "cornerRadiusTopRight": 5
+  },
+  "encoding": {
+    "x": {
+      "field": "Cost_Category",
+      "type": "nominal",
+      "title": "Cost Category",
+      "axis": {"labelAngle": -30, "labelFontSize": 11, "titleFontSize": 13}
+    },
+    "y": {
+      "field": "Allocation_Percent",
+      "type": "quantitative",
+      "title": "Allocation (%)",
+      "axis": {"grid": true}
+    },
+    "color": {
+      "field": "Cost_Category",
+      "type": "nominal",
+      "scale": {"scheme": "tableau10"},
+      "legend": {"title": "Category"}
+    },
+    "tooltip": [
+      {"field": "Cost_Category", "type": "nominal", "title": "Cost Type"},
+      {"field": "Allocation_Percent", "type": "quantitative", "title": "Allocation (%)"}
+    ]
+  },
+  "config": {
+    "background": "#f9fbff",
+    "axis": {"labelFontSize": 10, "titleFontSize": 12},
+    "legend": {"titleFontSize": 12, "labelFontSize": 10}
+  }
+}
